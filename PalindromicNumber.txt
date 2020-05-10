@@ -1,0 +1,36 @@
+package com.company;
+
+public class PalindromicNumber {
+
+    public static void main(String[] args) {
+        // A palindromic number reads the same both ways.
+        // The largest palindrome made from the product
+        // of two 2-digit numbers is 9009 = 91 × 99.
+        //
+        //Find the largest palindrome made from the product of two 3-digit numbers.
+
+        int number;
+
+
+        int[][] tab = new int[1000][1000];
+        for (int i = 100; i < 1000; i++) {
+            for (int j = 100; j < 1000; j++) {
+                tab[i - 100][j - 100] = i * j;
+                String check = String.valueOf(tab[i - 100][j - 100]);
+                boolean palindromic = true;
+
+                for (int k = check.length(); k > (check.length() / 2); k--) {
+                    boolean palindromicCheck = (check.charAt(k - 1) == check.charAt(check.length() - k));
+
+                    if (!palindromicCheck) {
+                        palindromic = false;
+                        break;
+                    }
+                }
+                if (palindromic) {
+                    System.out.println(tab[i - 100][j - 100]);
+                }
+            }
+        }
+    }
+}
